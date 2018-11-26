@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+  font-family: Avenir, Helveltica, Arial, san-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #fff;
+}
+/* use of * wildcard selector known to be slow so only for demo!  */
+body > * {
+  padding: 1em;
+  box-sizing: border-box;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(5, 1fr);
+  /*grid-gap: 6px; */
+  grid-template-areas:
+    "header  header"
+    "menu    menu"
+    "intro   content"
+    "intro content"
+    "footer  footer";
+}
+header {
+  grid-area: header;
+  background: #610B38;
+}
+nav {
+  grid-area: menu;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  background: #848484;
+
+}
+nav a {
+  display: flex;
+  color: black;
+  align-items: center;
+  padding: 1em 1em;
+  text-decoration: none;
+}
+nav a:hover{
+  display: flex;
+  color: white;
+  background: black;
+}
+.intro {
+  grid-area: intro;
+  background: #0B3861;
+}
+/*figure {
+  grid-area: figure;
+  background: darkslateblue;
+  margin: 0;
+  text-align: center;
+}*/
+main {
+  grid-area: content;
+  /* increasing the height of one element increases all row heights */
+  /*height: 25vh;*/
+  background: #BDBDBD;
+  color: black;
+}
+footer {
+  grid-area: footer;
+  background: #610B38;
+  /* needs to take up the full grid row so this leaves a gap! */
+  /* height: 3em; */
+}
+
+@media screen and (min-width: 400px){
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 10vh 10vh 70vh 10vh;
+    grid-template-areas:
+      "header  header  header"
+      "menu     intro   intro"
+      "menu  content   content"
+      "footer  footer  footer";
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .grid {
+    grid-template-columns: 0.4fr 1fr 1fr;
+    /*grid-template-rows: 1fr 1fr 1fr 1fr;*/
+    /*or set the rows to 'view height (vh)'*/
+    grid-template-rows: 10vh 10vh 70vh 10vh;
+    grid-template-areas:
+      "header  header  header"
+      "menu     menu   menu"
+      "intro   content   content"
+      "intro    content   content"
+      "footer  footer  footer";
+  }
+  nav {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+@media screen and (min-width: 1000px){
+  .grid {
+    grid-template-columns: 0.4fr 1fr 1fr;
+    grid-template-rows: 10vh 10vh 70vh 10vh;
+    grid-template-areas:
+      "header  header  header"
+      "menu   menu    menu"
+      "intro   content   content"
+      "intro content content"
+      "footer  footer  footer";
+  }
+}
